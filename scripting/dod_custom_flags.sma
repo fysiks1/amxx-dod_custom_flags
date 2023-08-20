@@ -10,15 +10,16 @@
 #include <amxmisc>
 #include <fakemeta>
 
-new g_pFlagGerman, g_pFlagNeutral, g_pFlagAllies, g_pSingleModel;
+new g_pFlagSet, g_pFlagGerman, g_pFlagNeutral, g_pFlagAllies, g_pSingleModel;
 
 public plugin_init()
 {
-	register_plugin("DOD Custom Flags", "1.1", "Fysiks");
+	register_plugin("DOD Custom Flags", "2.0", "Fysiks");
 }
 
 public plugin_precache()
 {
+	g_pFlagSet = register_cvar("dod_flag_set", "models/mapmodels/flags.mdl");
 	g_pFlagGerman = register_cvar("dod_flag_axis", "models/mapmodels/flags.mdl");
 	g_pFlagNeutral = register_cvar("dod_flag_neutral", "models/w_wflag.mdl");
 	g_pFlagAllies = register_cvar("dod_flag_allies", "models/w_aflag.mdl");
@@ -84,7 +85,7 @@ public fm_keyvalue(entid, handle)
 		
 		if( equali(szClassname,"dod_control_point") )
 		{	
-			get_pcvar_string(g_pFlagGerman, szAxisFlagModel, charsmax(szAxisFlagModel));
+			get_pcvar_string(g_pFlagSet, szAxisFlagModel, charsmax(szAxisFlagModel));
 			get_pcvar_string(g_pFlagNeutral, szNeutralFlagModel, charsmax(szNeutralFlagModel));
 			get_pcvar_string(g_pFlagAllies, szAlliesFlagModel, charsmax(szAlliesFlagModel));
 
